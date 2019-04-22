@@ -49,6 +49,12 @@ class _MyHomePageState extends State<MyHomePage> {
   Color _color = Colors.white;
   List<Color> colors = new List.of(Colors.accents);
 
+  void colorChange() {
+    setState(() {
+      _color = colors.elementAt(Random().nextInt(colors.length));
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called, for instance as done
@@ -84,17 +90,12 @@ class _MyHomePageState extends State<MyHomePage> {
           // horizontal).
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-              new GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      _color =
-                          colors.elementAt(Random().nextInt(colors.length));
-                    });
-                  },
-                  child: Text(
-                    'Hey there',
-                    style: new TextStyle(fontSize: 40),
-                  )),
+            new GestureDetector(
+                child: Text(
+                  'Hey there',
+                  style: new TextStyle(fontSize: 40),
+                ),
+                onTap: () => colorChange()),
           ],
         ),
       ),
